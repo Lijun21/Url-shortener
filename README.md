@@ -28,7 +28,7 @@ A web application built with Elixir and Phoenix that provides URL shortening, st
 
 4. **Setup the Database:**
    ```bash
-  Start the Phoenix server using:
+    Start the Phoenix server using:
   ```
   mix phx.server
   ```
@@ -38,9 +38,8 @@ A web application built with Elixir and Phoenix that provides URL shortening, st
 ## Testing
 
 1. **Run Tests:**
-   ```bash
    To run tests:
-   ```
+   ```bash
    mix test
    ```
 

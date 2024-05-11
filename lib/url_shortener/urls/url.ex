@@ -12,8 +12,6 @@ defmodule UrlShortener.Urls.Url do
   end
 
   def changeset(url, attrs) do
-    IO.inspect(url, label: "--------url")
-    IO.inspect(attrs, label: "--------attrs")
     url
     |> cast(attrs, [:slug, :original_url, :click_count])
     |> validate_required([:slug, :original_url])
