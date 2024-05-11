@@ -63,6 +63,7 @@ defmodule UrlShortener.MixProject do
       {:bandit, "~> 1.2"},
       {:csv, "~> 2.4"},
       {:excoveralls, "~> 0.13", only: :test},
+      {:dotenv, "~> 3.0.0"},
     ]
   end
 

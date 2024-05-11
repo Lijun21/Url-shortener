@@ -35,3 +35,6 @@ url_shortener-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Prevent env vars from being committed to version-controlled repository.
+/config/.env.exs
+

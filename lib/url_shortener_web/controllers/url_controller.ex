@@ -4,7 +4,6 @@ require Logger
 defmodule UrlShortenerWeb.UrlController do
   use UrlShortenerWeb, :controller
   alias UrlShortener.Urls
-  # alias UrlShortener.Urls.Url
 
   # Displays the form to create a new short URL
   def index(conn, _params) do

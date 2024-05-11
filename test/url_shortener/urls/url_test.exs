@@ -2,7 +2,6 @@ defmodule UrlShortener.Urls.UrlTest do
   use UrlShortener.DataCase, async: true
 
   alias UrlShortener.Urls.Url
-  alias UrlShortener.Repo
 
   describe "changeset/2" do
     @valid_attrs %{

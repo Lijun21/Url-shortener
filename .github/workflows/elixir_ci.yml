@@ -3,36 +3,27 @@ name: Elixir CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    container:
-      image: elixir:1.16.2-otp-26
-
     services:
       postgres:
-        image: postgres:13
+        image: postgres:14
         env:
-          POSTGRES_DB: user
-          POSTGRES_USER: password
-          POSTGRES_PASSWORD: mydatabase
+          POSTGRES_DB: url_shortener_dev
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: abcd1234
         ports:
           - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Elixir
-      uses: erlef/setup-beam@v1
+      uses: erlef/setup-beam@v1.15
       with:
         elixir-version: '1.16'  
         otp-version: '26'      
@@ -51,18 +42,3 @@ jobs:
     - name: Run Tests
       id: tests
       run: mix test
-
-    - name: Build and Push Docker Image
-      if: github.ref == 'refs/heads/main' && steps.tests.outcome == 'success'
-      run: |
-        docker build -t myorg/myapp:${{ github.sha }} .
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push myorg/myapp:${{ github.sha }}
-
-    - name: Deploy to QA
-      if: github.ref == 'refs/heads/main' && steps.tests.outcome == 'success'
-      run: |
-        ssh ${{ secrets.SSH_USERNAME }}@qa-server "docker pull myorg/myapp:${{ github.sha }} && docker-compose up -d"
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-

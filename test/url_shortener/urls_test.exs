@@ -36,7 +36,12 @@ defmodule UrlShortener.UrlsTest do
       attrs = %{"original_url" => "https://newsite.com"}
       {:ok, url} = Urls.create_url(attrs)
 
+      # Check the slug is not nil and exactly 6 characters long
       assert url.slug != nil
+      assert String.length(url.slug) == 6
+      # Check the slug only contains valid Base36 characters
+      assert Regex.match?(~r/^[0-9a-z]{6}$/, url.slug)
+      # Verify the original URL is correctly set
       assert url.original_url == "https://newsite.com"
     end
 
