@@ -13,8 +13,6 @@ defmodule UrlShortenerWeb.Router do
   # API pipeline to handle JSON requests
   pipeline :api do
     plug :accepts, ["json"]
-    # plug :fetch_flash
-    # plug :fetch_session
   end
 
   # API scope remains as-is

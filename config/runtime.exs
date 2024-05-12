@@ -100,3 +100,20 @@ if config_env() == :prod do
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
 end
+
+config :url_shortener, UrlShortener.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "abcd1234",
+  database: System.get_env("POSTGRES_DB") || "url_shortener_dev",
+  hostname: "localhost",
+  port: String.to_integer(System.get_env("DB_PORT") || "5432"),
+  pool_size: 10
+
+config :url_shortener, UrlShortener.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("POSTGRES_USER") || "postgres",
+  password: System.get_env("POSTGRES_PASSWORD") || "abcd1234",
+  database: System.get_env("POSTGRES_DB") || "url_shortener_dev",
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox

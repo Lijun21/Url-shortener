@@ -10,10 +10,10 @@ import Config
 config :url_shortener, ecto_repos: [UrlShortener.Repo]
 
 config :url_shortener, UrlShortener.Repo,
-  username: "postgres",
-  password: "abcd1234",
+  username: System.get_env("PSQL_DB_USER_NAME"),
+  password: System.get_env("PSQL_DB_USER_PW"),
   hostname: "localhost",
-  database: "url_shortener_dev",
+  database: System.get_env("PSQL_DB_NAME"),
   port: 5432,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

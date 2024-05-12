@@ -25,8 +25,8 @@ config :phoenix_live_view,
 
 config :url_shortener, UrlShortener.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "abcd1234",
-  database: "url_shortener_dev",
+  username: System.get_env("PSQL_DB_USER_NAME"),
+  password: System.get_env("PSQL_DB_USER_PW"),
+  database: System.get_env("PSQL_DB_NAME"),
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
