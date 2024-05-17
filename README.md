@@ -122,10 +122,10 @@ Each push to the main branch triggers a GitHub Action, as defined in the .github
 
 1. **Scalability:**
    - The tech stack, utilizing the Phoenix framework along with Elixir's concurrency model and PostgreSQL, the application is designed to handle intensive workloads efficiently.
-   - The design of the URL slugs are 6 digits long, combining lowercase letters and numbers, supporting approximately 2 billion unique records without conflicts.
 
 2. **Assumptions:**
-    The application assumes proper PostgreSQL configuration and a correctly set up environment.
+   - Request Handling: The application is expected to manage up to 5 requests per second via the creation API. Over a span of 10 years, this equates to approximately 1.6 billion unique records.
+   - Slug Design: For ease of use and memory, slugs are 6 characters in length, composed of lowercase letters and numbers. This design avoids complications with letter casing and supports around 2 billion unique entries without conflicts.
 
 3. **Potential Improvements:**
    - Consider adding authentication to enhance security and allow URL editing, so that user can specify their own URL. or delte exist URL.
